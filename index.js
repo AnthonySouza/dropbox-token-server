@@ -1,7 +1,14 @@
-require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
 const app = express();
 const { getAccessToken } = require('./routes/dropboxToken');
+
+// Permitir requisições apenas do seu domínio Webflow
+app.use(cors({
+  origin: true
+}));
 
 app.get('/dropbox-token', async (req, res) => {
   try {
